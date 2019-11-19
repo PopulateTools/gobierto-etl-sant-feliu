@@ -1,0 +1,68 @@
+email = "popu-servers+jenkins@populate.tools "
+pipeline {
+    agent any
+    environment {
+        PATH = "/home/ubuntu/.rbenv/shims:$PATH"
+        SANTFELIU_ETL = "/var/www/gobierto-etl-sant-feliu/current/"
+        // Variables that must be defined via Jenkins UI:
+        // GOBIERTO = "/var/www/gobierto/current"
+        // SANTFELIU_DOMAIN = "pressupost.santfeliu.cat"
+    }
+    stages {
+        stage('Load > Import GCI') {
+            steps {
+                sh "cd ${GOBIERTO}; bin/rails runner ${SANTFELIU_ETL}/operations/gobierto_indicators/import_gci/run.rb ${SANTFELIU_DOMAIN}"
+            }
+        }
+        stage('Load > Import IP12') {
+            steps {
+                sh "cd ${GOBIERTO}; bin/rails runner ${SANTFELIU_ETL}/operations/gobierto_indicators/import_ip12/run.rb ${SANTFELIU_DOMAIN}"
+            }
+        }
+        stage('Load > Import IP15') {
+            steps {
+                sh "cd ${GOBIERTO}; bin/rails runner ${SANTFELIU_ETL}/operations/gobierto_indicators/import_ip15/run.rb ${SANTFELIU_DOMAIN}"
+            }
+        }
+        stage('Load > Import IP16') {
+            steps {
+                sh "cd ${GOBIERTO}; bin/rails runner ${SANTFELIU_ETL}/operations/gobierto_indicators/import_ip16/run.rb ${SANTFELIU_DOMAIN}"
+            }
+        }
+        stage('Load > Import IP17') {
+            steps {
+                sh "cd ${GOBIERTO}; bin/rails runner ${SANTFELIU_ETL}/operations/gobierto_indicators/import_ip17/run.rb ${SANTFELIU_DOMAIN}"
+            }
+        }
+        stage('Load > Import IP18') {
+            steps {
+                sh "cd ${GOBIERTO}; bin/rails runner ${SANTFELIU_ETL}/operations/gobierto_indicators/import_ip18/run.rb ${SANTFELIU_DOMAIN}"
+            }
+        }
+        stage('Load > Import ITA12') {
+            steps {
+                sh "cd ${GOBIERTO}; bin/rails runner ${SANTFELIU_ETL}/operations/gobierto_indicators/import_ita12/run.rb ${SANTFELIU_DOMAIN}"
+            }
+        }
+        stage('Load > Import ITA14') {
+            steps {
+                sh "cd ${GOBIERTO}; bin/rails runner ${SANTFELIU_ETL}/operations/gobierto_indicators/import_ita14/run.rb  ${SANTFELIU_DOMAIN}"
+            }
+        }
+        stage('Load > Import ITA17') {
+            steps {
+                sh "cd ${GOBIERTO}; bin/rails runner ${SANTFELIU_ETL}/operations/gobierto_indicators/import_ita17/run.rb  ${SANTFELIU_DOMAIN}"
+            }
+        }
+    }
+    post {
+        failure {
+            echo 'This will run only if failed'
+            mail body: "Project: ${env.JOB_NAME} - Build Number: ${env.BUILD_NUMBER} - URL de build: ${env.BUILD_URL}",
+                charset: 'UTF-8',
+                subject: "ERROR CI: Project name -> ${env.JOB_NAME}",
+                to: email
+
+        }
+    }
+}
