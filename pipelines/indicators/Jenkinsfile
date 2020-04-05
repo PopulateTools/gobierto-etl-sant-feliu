@@ -2,7 +2,7 @@ email = "popu-servers+jenkins@populate.tools "
 pipeline {
     agent any
     environment {
-        PATH = "/home/ubuntu/.rbenv/shims:$PATH"
+        PATH = "$HOME/.rbenv/shims:$PATH"
         SANTFELIU_ETL = "/var/www/gobierto-etl-sant-feliu/current/"
         // Variables that must be defined via Jenkins UI:
         // GOBIERTO = "/var/www/gobierto/current"
