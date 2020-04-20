@@ -16,16 +16,16 @@ pipeline {
               sh '''#!/bin/bash
                 source ${SANTFELIU_ETL}/.rbenv-vars;
                 cd ${GOBIERTO_ETL_UTILS}; 
-                ruby operations/download/run.rb 'https://www.santfeliu.cat/scripts/previsio_pressupost?execute&any=17&key=$SANT_FELIU_API_TOKEN' ${STORAGE_DIR}/budgets-planned-2017.json;
-                ruby operations/download/run.rb 'https://www.santfeliu.cat/scripts/previsio_pressupost?execute&any=18&key=$SANT_FELIU_API_TOKEN' ${STORAGE_DIR}/budgets-planned-2018.json;
+                ruby operations/download/run.rb 'https://www.santfeliu.cat/scripts/previsio_pressupost?execute&any=17&key='$SANT_FELIU_API_TOKEN ${STORAGE_DIR}/budgets-planned-2017.json;
+                ruby operations/download/run.rb 'https://www.santfeliu.cat/scripts/previsio_pressupost?execute&any=18&key='$SANT_FELIU_API_TOKEN ${STORAGE_DIR}/budgets-planned-2018.json;
                 ruby operations/download/run.rb 'https://www.santfeliu.cat/scripts/pressupost_despesa?execute&any=17'  ${STORAGE_DIR}/budgets-executed-expense-2017.json;
                 ruby operations/download/run.rb 'https://www.santfeliu.cat/scripts/pressupost_ingres?execute&any=17'   ${STORAGE_DIR}/budgets-executed-income-2017.json;
                 ruby operations/download/run.rb 'https://www.santfeliu.cat/scripts/pressupost_despesa?execute&any=18'  ${STORAGE_DIR}/budgets-executed-expense-2018.json;
                 ruby operations/download/run.rb 'https://www.santfeliu.cat/scripts/pressupost_ingres?execute&any=18'   ${STORAGE_DIR}/budgets-executed-income-2018.json;
-                ruby operations/download/run.rb 'https://www.santfeliu.cat/scripts/previsio_pressupost?execute&any=19&key=$SANT_FELIU_API_TOKEN' ${STORAGE_DIR}/budgets-planned-2019.json;
+                ruby operations/download/run.rb 'https://www.santfeliu.cat/scripts/previsio_pressupost?execute&any=19&key='$SANT_FELIU_API_TOKEN ${STORAGE_DIR}/budgets-planned-2019.json;
                 ruby operations/download/run.rb 'https://www.santfeliu.cat/scripts/pressupost_despesa?execute&any=19'  ${STORAGE_DIR}/budgets-executed-expense-2019.json;
                 ruby operations/download/run.rb 'https://www.santfeliu.cat/scripts/pressupost_ingres?execute&any=19'   ${STORAGE_DIR}/budgets-executed-income-2019.json;
-                ruby operations/download/run.rb 'https://www.santfeliu.cat/scripts/previsio_pressupost?execute&any=20&key=$SANT_FELIU_API_TOKEN' ${STORAGE_DIR}/budgets-planned-2020.json;
+                ruby operations/download/run.rb 'https://www.santfeliu.cat/scripts/previsio_pressupost?execute&any=20&key='$SANT_FELIU_API_TOKEN ${STORAGE_DIR}/budgets-planned-2020.json;
               '''
             }
         }
