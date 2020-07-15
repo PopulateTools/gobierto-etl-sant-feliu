@@ -4,7 +4,6 @@ require "bundler/setup"
 Bundler.require
 
 require "json"
-require "byebug"
 
 # Usage:
 #
