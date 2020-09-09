@@ -5,18 +5,18 @@ ETL_SANT_FELIU=$DEV_DIR/gobierto-etl-sant-feliu
 STORAGE_DIR=/tmp/sant-feliu
 
 # Extract > Download data sources
-cd $GOBIERTO_ETL_UTILS; ruby operations/download/run.rb "https://www.santfeliu.cat/scripts/previsio_pressupost?execute&any=17&key=$SANT_FELIU_API_TOKEN" $STORAGE_DIR/budgets-planned-2017.json
-cd $GOBIERTO_ETL_UTILS; ruby operations/download/run.rb "https://www.santfeliu.cat/scripts/previsio_pressupost?execute&any=18&key=$SANT_FELIU_API_TOKEN" $STORAGE_DIR/budgets-planned-2018.json
-cd $GOBIERTO_ETL_UTILS; ruby operations/download/run.rb "https://www.santfeliu.cat/scripts/pressupost_despesa?execute&any=17"  $STORAGE_DIR/budgets-executed-expense-2017.json
-cd $GOBIERTO_ETL_UTILS; ruby operations/download/run.rb "https://www.santfeliu.cat/scripts/pressupost_ingres?execute&any=17"   $STORAGE_DIR/budgets-executed-income-2017.json
-cd $GOBIERTO_ETL_UTILS; ruby operations/download/run.rb "https://www.santfeliu.cat/scripts/pressupost_despesa?execute&any=18"  $STORAGE_DIR/budgets-executed-expense-2018.json
-cd $GOBIERTO_ETL_UTILS; ruby operations/download/run.rb "https://www.santfeliu.cat/scripts/pressupost_ingres?execute&any=18"   $STORAGE_DIR/budgets-executed-income-2018.json
+cd $GOBIERTO_ETL_UTILS; ruby operations/download/run.rb "https://www.santfeliu.cat/scripts/previsio_pressupost?execute&any=17&key=$SANT_FELIU_API_TOKEN" $STORAGE_DIR/budgets-planned-2017.json --compatible
+cd $GOBIERTO_ETL_UTILS; ruby operations/download/run.rb "https://www.santfeliu.cat/scripts/previsio_pressupost?execute&any=18&key=$SANT_FELIU_API_TOKEN" $STORAGE_DIR/budgets-planned-2018.json --compatible
+cd $GOBIERTO_ETL_UTILS; ruby operations/download/run.rb "https://www.santfeliu.cat/scripts/pressupost_despesa?execute&any=17"  $STORAGE_DIR/budgets-executed-expense-2017.json --compatible
+cd $GOBIERTO_ETL_UTILS; ruby operations/download/run.rb "https://www.santfeliu.cat/scripts/pressupost_ingres?execute&any=17"   $STORAGE_DIR/budgets-executed-income-2017.json --compatible
+cd $GOBIERTO_ETL_UTILS; ruby operations/download/run.rb "https://www.santfeliu.cat/scripts/pressupost_despesa?execute&any=18"  $STORAGE_DIR/budgets-executed-expense-2018.json --compatible
+cd $GOBIERTO_ETL_UTILS; ruby operations/download/run.rb "https://www.santfeliu.cat/scripts/pressupost_ingres?execute&any=18"   $STORAGE_DIR/budgets-executed-income-2018.json --compatible
 
-cd $GOBIERTO_ETL_UTILS; ruby operations/download/run.rb "https://www.santfeliu.cat/scripts/previsio_pressupost?execute&any=19&key=$SANT_FELIU_API_TOKEN" $STORAGE_DIR/budgets-planned-2019.json
-cd $GOBIERTO_ETL_UTILS; ruby operations/download/run.rb "https://www.santfeliu.cat/scripts/pressupost_despesa?execute&any=19"  $STORAGE_DIR/budgets-executed-expense-2019.json
-cd $GOBIERTO_ETL_UTILS; ruby operations/download/run.rb "https://www.santfeliu.cat/scripts/pressupost_ingres?execute&any=19"   $STORAGE_DIR/budgets-executed-income-2019.json
+cd $GOBIERTO_ETL_UTILS; ruby operations/download/run.rb "https://www.santfeliu.cat/scripts/previsio_pressupost?execute&any=19&key=$SANT_FELIU_API_TOKEN" $STORAGE_DIR/budgets-planned-2019.json --compatible
+cd $GOBIERTO_ETL_UTILS; ruby operations/download/run.rb "https://www.santfeliu.cat/scripts/pressupost_despesa?execute&any=19"  $STORAGE_DIR/budgets-executed-expense-2019.json --compatible
+cd $GOBIERTO_ETL_UTILS; ruby operations/download/run.rb "https://www.santfeliu.cat/scripts/pressupost_ingres?execute&any=19"   $STORAGE_DIR/budgets-executed-income-2019.json --compatible
 
-cd $GOBIERTO_ETL_UTILS; ruby operations/download/run.rb "https://www.santfeliu.cat/scripts/previsio_pressupost?execute&any=20&key=$SANT_FELIU_API_TOKEN" $STORAGE_DIR/budgets-planned-2020.json
+cd $GOBIERTO_ETL_UTILS; ruby operations/download/run.rb "https://www.santfeliu.cat/scripts/previsio_pressupost?execute&any=20&key=$SANT_FELIU_API_TOKEN" $STORAGE_DIR/budgets-planned-2020.json --compatible
 
 # Extract > Check valid JSON
 cd $GOBIERTO_ETL_UTILS; ruby operations/check-json/run.rb $STORAGE_DIR/budgets-planned-2017.json
