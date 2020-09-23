@@ -83,8 +83,8 @@ pipeline {
                 sh "cd ${SANTFELIU_ETL}; ruby operations/gobierto_budgets/transform-executed/run.rb ${STORAGE_DIR}/budgets-executed-income-2018.json  ${STORAGE_DIR}/budgets-executed-income-2018-transformed.json 2018 I"
                 sh "cd ${SANTFELIU_ETL}; ruby operations/gobierto_budgets/transform-executed/run.rb ${STORAGE_DIR}/budgets-executed-expense-2019.json ${STORAGE_DIR}/budgets-executed-expense-2019-transformed.json 2019 G"
                 sh "cd ${SANTFELIU_ETL}; ruby operations/gobierto_budgets/transform-executed/run.rb ${STORAGE_DIR}/budgets-executed-income-2019.json  ${STORAGE_DIR}/budgets-executed-income-2019-transformed.json 2019 I"
-                sh "cd ${SANTFELIU_ETL}; ruby operations/gobierto_budgets/transform-executed/run.rb ${STORAGE_DIR}/budgets-executed-expense-2020.json ${STORAGE_DIR}/budgets-executed-expense-2019-transformed.json 2020 G"
-                sh "cd ${SANTFELIU_ETL}; ruby operations/gobierto_budgets/transform-executed/run.rb ${STORAGE_DIR}/budgets-executed-income-2020.json  ${STORAGE_DIR}/budgets-executed-income-2019-transformed.json 2020 I"
+                sh "cd ${SANTFELIU_ETL}; ruby operations/gobierto_budgets/transform-executed/run.rb ${STORAGE_DIR}/budgets-executed-expense-2020.json ${STORAGE_DIR}/budgets-executed-expense-2020-transformed.json 2020 G"
+                sh "cd ${SANTFELIU_ETL}; ruby operations/gobierto_budgets/transform-executed/run.rb ${STORAGE_DIR}/budgets-executed-income-2020.json  ${STORAGE_DIR}/budgets-executed-income-2020-transformed.json 2020 I"
             }
         }
         stage('Load > Import planned budgets') {

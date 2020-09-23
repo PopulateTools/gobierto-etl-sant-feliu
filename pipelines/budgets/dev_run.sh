@@ -66,8 +66,8 @@ cd $ETL_SANT_FELIU; ruby operations/gobierto_budgets/transform-executed/run.rb $
 cd $ETL_SANT_FELIU; ruby operations/gobierto_budgets/transform-executed/run.rb $STORAGE_DIR/budgets-executed-income-2018.json  $STORAGE_DIR/budgets-executed-income-2018-transformed.json 2018 I
 cd $ETL_SANT_FELIU; ruby operations/gobierto_budgets/transform-executed/run.rb $STORAGE_DIR/budgets-executed-expense-2019.json $STORAGE_DIR/budgets-executed-expense-2019-transformed.json 2019 G
 cd $ETL_SANT_FELIU; ruby operations/gobierto_budgets/transform-executed/run.rb $STORAGE_DIR/budgets-executed-income-2019.json  $STORAGE_DIR/budgets-executed-income-2019-transformed.json 2019 I
-cd $ETL_SANT_FELIU; ruby operations/gobierto_budgets/transform-executed/run.rb $STORAGE_DIR/budgets-executed-expense-2020.json $STORAGE_DIR/budgets-executed-expense-2020-transformed.json 2019 G
-cd $ETL_SANT_FELIU; ruby operations/gobierto_budgets/transform-executed/run.rb $STORAGE_DIR/budgets-executed-income-2020.json  $STORAGE_DIR/budgets-executed-income-2020-transformed.json 2019 I
+cd $ETL_SANT_FELIU; ruby operations/gobierto_budgets/transform-executed/run.rb $STORAGE_DIR/budgets-executed-expense-2020.json $STORAGE_DIR/budgets-executed-expense-2020-transformed.json 2020 G
+cd $ETL_SANT_FELIU; ruby operations/gobierto_budgets/transform-executed/run.rb $STORAGE_DIR/budgets-executed-income-2020.json  $STORAGE_DIR/budgets-executed-income-2020-transformed.json 2020 I
 
 # Load > Import planned budgets
 cd $ETL_SANT_FELIU; ruby operations/gobierto_budgets/import-planned-budgets/run.rb $STORAGE_DIR/budgets-planned-2017-transformed.json 2017
@@ -83,8 +83,8 @@ cd $ETL_SANT_FELIU; ruby operations/gobierto_budgets/import-executed-budgets/run
 cd $ETL_SANT_FELIU; ruby operations/gobierto_budgets/import-executed-budgets/run.rb $STORAGE_DIR/budgets-executed-income-2018-transformed.json 2018
 cd $ETL_SANT_FELIU; ruby operations/gobierto_budgets/import-executed-budgets/run.rb $STORAGE_DIR/budgets-executed-expense-2019-transformed.json 2019
 cd $ETL_SANT_FELIU; ruby operations/gobierto_budgets/import-executed-budgets/run.rb $STORAGE_DIR/budgets-executed-income-2019-transformed.json 2019
-cd $ETL_SANT_FELIU; ruby operations/gobierto_budgets/import-executed-budgets/run.rb $STORAGE_DIR/budgets-executed-expense-2019-transformed.json 2020
-cd $ETL_SANT_FELIU; ruby operations/gobierto_budgets/import-executed-budgets/run.rb $STORAGE_DIR/budgets-executed-income-2019-transformed.json 2020
+cd $ETL_SANT_FELIU; ruby operations/gobierto_budgets/import-executed-budgets/run.rb $STORAGE_DIR/budgets-executed-expense-2020-transformed.json 2020
+cd $ETL_SANT_FELIU; ruby operations/gobierto_budgets/import-executed-budgets/run.rb $STORAGE_DIR/budgets-executed-income-2020-transformed.json 2020
 
 # Load > Calculate totals
 echo "8211" > $STORAGE_DIR/organization.id.txt
