@@ -1,6 +1,6 @@
 GIT
   remote: https://github.com/PopulateTools/gobierto_data.git
-  revision: 28aa9098d55d7debf5637b738ac58884cd945254
+  revision: c7a3142253c24fc9a28e7e25e9c6f05db96ec98f
   specs:
     gobierto_data (0.1.0)
       actionpack
@@ -15,20 +15,20 @@ GIT
 GEM
   remote: https://rubygems.org/
   specs:
-    actionpack (6.0.3.2)
-      actionview (= 6.0.3.2)
-      activesupport (= 6.0.3.2)
+    actionpack (6.0.3.3)
+      actionview (= 6.0.3.3)
+      activesupport (= 6.0.3.3)
       rack (~> 2.0, >= 2.0.8)
       rack-test (>= 0.6.3)
       rails-dom-testing (~> 2.0)
       rails-html-sanitizer (~> 1.0, >= 1.2.0)
-    actionview (6.0.3.2)
-      activesupport (= 6.0.3.2)
+    actionview (6.0.3.3)
+      activesupport (= 6.0.3.3)
       builder (~> 3.1)
       erubi (~> 1.4)
       rails-dom-testing (~> 2.0)
       rails-html-sanitizer (~> 1.1, >= 1.2.0)
-    activesupport (6.0.3.2)
+    activesupport (6.0.3.3)
       concurrent-ruby (~> 1.0, >= 1.0.2)
       i18n (>= 0.7, < 2)
       minitest (~> 5.1)
@@ -41,16 +41,16 @@ GEM
       nokogiri
     ansi (1.5.0)
     aws-eventstream (1.1.0)
-    aws-partitions (1.365.0)
-    aws-sdk-core (3.105.0)
+    aws-partitions (1.374.0)
+    aws-sdk-core (3.107.0)
       aws-eventstream (~> 1, >= 1.0.2)
       aws-partitions (~> 1, >= 1.239.0)
       aws-sigv4 (~> 1.1)
       jmespath (~> 1.0)
-    aws-sdk-kms (1.37.0)
+    aws-sdk-kms (1.38.0)
       aws-sdk-core (~> 3, >= 3.99.0)
       aws-sigv4 (~> 1.1)
-    aws-sdk-s3 (1.79.1)
+    aws-sdk-s3 (1.81.0)
       aws-sdk-core (~> 3, >= 3.104.3)
       aws-sdk-kms (~> 1)
       aws-sigv4 (~> 1.1)
