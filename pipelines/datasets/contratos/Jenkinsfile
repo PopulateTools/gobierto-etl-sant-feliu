@@ -2,7 +2,7 @@ email = "popu-servers+jenkins@populate.tools "
 pipeline {
     agent any
     environment {
-        FOLDER = "gobierto_etl_sant_feliu_tenders"
+        FOLDER = "contratos"
         PATH = "$HOME/.rbenv/shims:$PATH"
         ETL_UTILS = "/var/www/gobierto-etl-utils/current/"
         DATASET_NAME = "Contratos"
