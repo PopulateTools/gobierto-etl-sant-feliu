@@ -27,4 +27,4 @@ FROM
   LEFT JOIN contract_types ON contract_type = contract_types.id
   LEFT JOIN contract_statuses ON status = contract_statuses.id
   LEFT JOIN process_types ON tenders.process_type = process_types.id
-WHERE contractors.custom_place_id = 08211
+WHERE contractors.custom_place_id = 8211

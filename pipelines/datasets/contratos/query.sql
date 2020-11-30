@@ -32,4 +32,4 @@ FROM
   LEFT JOIN contract_statuses ON status = contract_statuses.id
   LEFT JOIN tenders ON contracts.permalink = tenders.permalink
   LEFT JOIN process_types ON contracts.process_type = process_types.id
-WHERE contractors.custom_place_id = 08211
+WHERE contractors.custom_place_id = 8211
