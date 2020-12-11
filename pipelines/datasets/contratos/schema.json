@@ -18,5 +18,7 @@
   "contract_type":{"type":"text"},
   "process_type":{"type":"text"},
   "minor_contract":{"type":"boolean"},
-  "cpvs":{"type":"text"}
+  "cpvs":{"type":"text"},
+  "category_id":{"type":"integer"},
+  "category_title":{"type":"text"}
 }

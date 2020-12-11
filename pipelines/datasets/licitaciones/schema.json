@@ -16,5 +16,7 @@
   "initial_amount":{"type":"numeric"},
   "initial_amount_no_taxes":{"type":"numeric"},
   "cpvs":{"type":"text"},
-  "process_type":{"type":"text"}
+  "process_type":{"type":"text"},
+  "category_id":{"type":"integer"},
+  "category_title":{"type":"text"}
 }

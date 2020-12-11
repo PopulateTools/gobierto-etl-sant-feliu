@@ -14,6 +14,7 @@ SELECT
   contracts.final_amount,
   contracts.final_amount_no_taxes,
   contractors.name AS contractor,
+  contractors.id AS contractor_id,
   contractors_types.text AS contractor_type,
   contract_types.text AS contract_type,
   process_types.text AS process_type,
@@ -21,7 +22,9 @@ SELECT
     WHEN 'Contrato menor' THEN true
     ELSE false
   END as minor_contract,
-  array_to_string(contracts.cpvs, ',') AS cpvs
+  array_to_string(contracts.cpvs, ',') AS cpvs,
+  categories.id as category_id,
+  categories.title as category_title
 FROM
   contracts
   LEFT JOIN fiscal_entities contractors ON contractor_id = contractors.id
@@ -32,4 +35,6 @@ FROM
   LEFT JOIN contract_statuses ON status = contract_statuses.id
   LEFT JOIN tenders ON contracts.permalink = tenders.permalink
   LEFT JOIN process_types ON contracts.process_type = process_types.id
+  LEFT JOIN cpv_categorizations ON cpv_categorizations.cpv_division = contracts.cpvs_divisions[1]
+  LEFT JOIN categories ON categories.id = cpv_categorizations.category_id
 WHERE contractors.custom_place_id = 8211
