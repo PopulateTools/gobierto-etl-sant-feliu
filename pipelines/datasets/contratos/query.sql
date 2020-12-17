@@ -24,7 +24,8 @@ SELECT
   END as minor_contract,
   array_to_string(contracts.cpvs, ',') AS cpvs,
   categories.id as category_id,
-  categories.title as category_title
+  categories.title as category_title,
+  contracts.contract_award_published_at as award_published_at
 FROM
   contracts
   LEFT JOIN fiscal_entities contractors ON contractor_id = contractors.id
