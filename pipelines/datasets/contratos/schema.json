@@ -20,5 +20,6 @@
   "minor_contract":{"type":"boolean"},
   "cpvs":{"type":"text"},
   "category_id":{"type":"integer"},
-  "category_title":{"type":"text"}
+  "category_title":{"type":"text"},
+  "award_published_at":{"type":"text"}
 }
