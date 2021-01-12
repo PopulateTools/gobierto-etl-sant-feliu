@@ -8,6 +8,7 @@ pipeline {
         DATASET_NAME = "Contratos"
         DATASET_SLUG = "contratos"
         DATASET_TABLE_NAME = "${FOLDER}"
+        SANT_FELIU_INE_CODE = "8211"
         // Variables that must be defined via Jenkins UI:
         // GOBIERTO_DATA_SOURCE_URL = ""
         // GOBIERTO_DATA_DEST_URL = ""
@@ -19,7 +20,7 @@ pipeline {
               sh '''#!/bin/bash
                 source ${ETL}/.rbenv-vars;
                 cd ${ETL_UTILS};
-                QUERY=`cat $ETL/pipelines/datasets/${FOLDER}/query.sql | jq -s -R -r @uri`
+                QUERY=`sed "s/<PLACE_ID>/${SANT_FELIU_INE_CODE}/g" ${ETL_UTILS}/operations/gobierto_data/extract-contracts/query.sql | jq -s -R -r @uri`
                 FILEURL=$GOBIERTO_DATA_SOURCE_URL"/api/v1/data/data.csv?token="$API_TOKEN"&sql="$QUERY
                 ruby operations/gobierto_data/upload-dataset/run.rb \
                   --api-token $API_TOKEN \
@@ -27,7 +28,7 @@ pipeline {
                   --slug $DATASET_SLUG \
                   --table-name $DATASET_TABLE_NAME \
                   --gobierto-url $GOBIERTO_DATA_DEST_URL \
-                  --schema-path ${ETL}/pipelines/datasets/${FOLDER}/schema.json \
+                  --schema-path ${ETL_UTILS}/operations/gobierto_data/extract-contracts/schema.json \
                   --file-url $FILEURL
               '''
             }
