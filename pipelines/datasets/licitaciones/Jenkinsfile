@@ -21,9 +21,9 @@ pipeline {
                 source ${ETL}/.rbenv-vars;
                 cd ${ETL_UTILS};
                 QUERY=`sed "s/<PLACE_ID>/${SANT_FELIU_INE_CODE}/g" ${ETL_UTILS}/operations/gobierto_data/extract-tenders/query.sql | jq -s -R -r @uri`
-                FILEURL=$GOBIERTO_DATA_SOURCE_URL"/api/v1/data/data.csv?token="$API_TOKEN"&sql="$QUERY
+                FILEURL=$GOBIERTO_DATA_SOURCE_URL"/api/v1/data/data.csv?token="$READ_API_TOKEN"&sql="$QUERY
                 ruby operations/gobierto_data/upload-dataset/run.rb \
-                  --api-token $API_TOKEN \
+                  --api-token $WRITE_API_TOKEN \
                   --name "$DATASET_NAME" \
                   --slug $DATASET_SLUG \
                   --table-name $DATASET_TABLE_NAME \
