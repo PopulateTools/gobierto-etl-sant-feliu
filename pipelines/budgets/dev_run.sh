@@ -22,6 +22,8 @@ cd $GOBIERTO_ETL_UTILS; ruby operations/download/run.rb "https://www.santfeliu.c
 cd $GOBIERTO_ETL_UTILS; ruby operations/download/run.rb "https://www.santfeliu.cat/scripts/pressupost_ingres?execute&any=20"   $STORAGE_DIR/budgets-executed-income-2020.json --compatible
 
 cd $GOBIERTO_ETL_UTILS; ruby operations/download/run.rb "https://www.santfeliu.cat/scripts/previsio_pressupost?execute&any=21&key=$SANT_FELIU_API_TOKEN" $STORAGE_DIR/budgets-planned-2021.json --compatible
+cd $GOBIERTO_ETL_UTILS; ruby operations/download/run.rb "https://www.santfeliu.cat/scripts/pressupost_despesa?execute&any=21"  $STORAGE_DIR/budgets-executed-expense-2021.json --compatible
+cd $GOBIERTO_ETL_UTILS; ruby operations/download/run.rb "https://www.santfeliu.cat/scripts/pressupost_ingres?execute&any=21"   $STORAGE_DIR/budgets-executed-income-2021.json --compatible
 
 # Extract > Check valid JSON
 cd $GOBIERTO_ETL_UTILS; ruby operations/check-json/run.rb $STORAGE_DIR/budgets-planned-2017.json
@@ -37,6 +39,8 @@ cd $GOBIERTO_ETL_UTILS; ruby operations/check-json/run.rb $STORAGE_DIR/budgets-p
 cd $GOBIERTO_ETL_UTILS; ruby operations/check-json/run.rb $STORAGE_DIR/budgets-executed-expense-2020.json
 cd $GOBIERTO_ETL_UTILS; ruby operations/check-json/run.rb $STORAGE_DIR/budgets-executed-income-2020.json
 cd $GOBIERTO_ETL_UTILS; ruby operations/check-json/run.rb $STORAGE_DIR/budgets-planned-2021.json
+cd $GOBIERTO_ETL_UTILS; ruby operations/check-json/run.rb $STORAGE_DIR/budgets-executed-expense-2021.json
+cd $GOBIERTO_ETL_UTILS; ruby operations/check-json/run.rb $STORAGE_DIR/budgets-executed-income-2021.json
 
 # Extract > Check data source columns
 cd $ETL_SANT_FELIU; ruby operations/gobierto_budgets/check-json-columns/run.rb $STORAGE_DIR/budgets-planned-2017.json
@@ -51,6 +55,9 @@ cd $ETL_SANT_FELIU; ruby operations/gobierto_budgets/check-json-columns/run.rb $
 cd $ETL_SANT_FELIU; ruby operations/gobierto_budgets/check-json-columns/run.rb $STORAGE_DIR/budgets-planned-2020.json
 cd $ETL_SANT_FELIU; ruby operations/gobierto_budgets/check-json-columns/run.rb $STORAGE_DIR/budgets-executed-expense-2020.json
 cd $ETL_SANT_FELIU; ruby operations/gobierto_budgets/check-json-columns/run.rb $STORAGE_DIR/budgets-executed-income-2020.json
+cd $ETL_SANT_FELIU; ruby operations/gobierto_budgets/check-json-columns/run.rb $STORAGE_DIR/budgets-planned-2021.json
+cd $ETL_SANT_FELIU; ruby operations/gobierto_budgets/check-json-columns/run.rb $STORAGE_DIR/budgets-executed-expense-2021.json
+cd $ETL_SANT_FELIU; ruby operations/gobierto_budgets/check-json-columns/run.rb $STORAGE_DIR/budgets-executed-income-2021.json
 
 # Transform > Transform planned budgets data files
 cd $ETL_SANT_FELIU; ruby operations/gobierto_budgets/transform-planned/run.rb $STORAGE_DIR/budgets-planned-2017.json $STORAGE_DIR/budgets-planned-2017-transformed.json 2017
@@ -68,6 +75,8 @@ cd $ETL_SANT_FELIU; ruby operations/gobierto_budgets/transform-executed/run.rb $
 cd $ETL_SANT_FELIU; ruby operations/gobierto_budgets/transform-executed/run.rb $STORAGE_DIR/budgets-executed-income-2019.json  $STORAGE_DIR/budgets-executed-income-2019-transformed.json 2019 I
 cd $ETL_SANT_FELIU; ruby operations/gobierto_budgets/transform-executed/run.rb $STORAGE_DIR/budgets-executed-expense-2020.json $STORAGE_DIR/budgets-executed-expense-2020-transformed.json 2020 G
 cd $ETL_SANT_FELIU; ruby operations/gobierto_budgets/transform-executed/run.rb $STORAGE_DIR/budgets-executed-income-2020.json  $STORAGE_DIR/budgets-executed-income-2020-transformed.json 2020 I
+cd $ETL_SANT_FELIU; ruby operations/gobierto_budgets/transform-executed/run.rb $STORAGE_DIR/budgets-executed-expense-2020.json $STORAGE_DIR/budgets-executed-expense-2020-transformed.json 2021 G
+cd $ETL_SANT_FELIU; ruby operations/gobierto_budgets/transform-executed/run.rb $STORAGE_DIR/budgets-executed-income-2020.json  $STORAGE_DIR/budgets-executed-income-2020-transformed.json 2021 I
 
 # Load > Import planned budgets
 cd $ETL_SANT_FELIU; ruby operations/gobierto_budgets/import-planned-budgets/run.rb $STORAGE_DIR/budgets-planned-2017-transformed.json 2017
@@ -85,6 +94,8 @@ cd $ETL_SANT_FELIU; ruby operations/gobierto_budgets/import-executed-budgets/run
 cd $ETL_SANT_FELIU; ruby operations/gobierto_budgets/import-executed-budgets/run.rb $STORAGE_DIR/budgets-executed-income-2019-transformed.json 2019
 cd $ETL_SANT_FELIU; ruby operations/gobierto_budgets/import-executed-budgets/run.rb $STORAGE_DIR/budgets-executed-expense-2020-transformed.json 2020
 cd $ETL_SANT_FELIU; ruby operations/gobierto_budgets/import-executed-budgets/run.rb $STORAGE_DIR/budgets-executed-income-2020-transformed.json 2020
+cd $ETL_SANT_FELIU; ruby operations/gobierto_budgets/import-executed-budgets/run.rb $STORAGE_DIR/budgets-executed-expense-2020-transformed.json 2021
+cd $ETL_SANT_FELIU; ruby operations/gobierto_budgets/import-executed-budgets/run.rb $STORAGE_DIR/budgets-executed-income-2020-transformed.json 2021
 
 # Load > Calculate totals
 echo "8211" > $STORAGE_DIR/organization.id.txt

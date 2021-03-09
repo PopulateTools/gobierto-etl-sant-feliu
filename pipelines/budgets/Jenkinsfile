@@ -29,6 +29,8 @@ pipeline {
                 ruby operations/download/run.rb 'https://www.santfeliu.cat/scripts/pressupost_despesa?execute&any=20'  ${STORAGE_DIR}/budgets-executed-expense-2020.json --compatible;
                 ruby operations/download/run.rb 'https://www.santfeliu.cat/scripts/pressupost_ingres?execute&any=20'   ${STORAGE_DIR}/budgets-executed-income-2020.json --compatible;
                 ruby operations/download/run.rb 'https://www.santfeliu.cat/scripts/previsio_pressupost?execute&any=21&key='$SANT_FELIU_API_TOKEN ${STORAGE_DIR}/budgets-planned-2021.json --compatible;
+                ruby operations/download/run.rb 'https://www.santfeliu.cat/scripts/pressupost_despesa?execute&any=21'  ${STORAGE_DIR}/budgets-executed-expense-2021.json --compatible;
+                ruby operations/download/run.rb 'https://www.santfeliu.cat/scripts/pressupost_ingres?execute&any=21'   ${STORAGE_DIR}/budgets-executed-income-2021.json --compatible;
               '''
             }
         }
@@ -47,6 +49,8 @@ pipeline {
                 sh "cd ${GOBIERTO_ETL_UTILS}; ruby operations/check-json/run.rb ${STORAGE_DIR}/budgets-executed-expense-2020.json"
                 sh "cd ${GOBIERTO_ETL_UTILS}; ruby operations/check-json/run.rb ${STORAGE_DIR}/budgets-executed-income-2020.json"
                 sh "cd ${GOBIERTO_ETL_UTILS}; ruby operations/check-json/run.rb ${STORAGE_DIR}/budgets-planned-2021.json"
+                sh "cd ${GOBIERTO_ETL_UTILS}; ruby operations/check-json/run.rb ${STORAGE_DIR}/budgets-executed-expense-2021.json"
+                sh "cd ${GOBIERTO_ETL_UTILS}; ruby operations/check-json/run.rb ${STORAGE_DIR}/budgets-executed-income-2021.json"
             }
         }
         stage('Extract > Check data source columns') {
@@ -64,6 +68,8 @@ pipeline {
                 sh "cd ${SANTFELIU_ETL}; ruby operations/gobierto_budgets/check-json-columns/run.rb ${STORAGE_DIR}/budgets-executed-expense-2020.json"
                 sh "cd ${SANTFELIU_ETL}; ruby operations/gobierto_budgets/check-json-columns/run.rb ${STORAGE_DIR}/budgets-executed-income-2020.json"
                 sh "cd ${SANTFELIU_ETL}; ruby operations/gobierto_budgets/check-json-columns/run.rb ${STORAGE_DIR}/budgets-planned-2021.json"
+                sh "cd ${SANTFELIU_ETL}; ruby operations/gobierto_budgets/check-json-columns/run.rb ${STORAGE_DIR}/budgets-executed-expense-2021.json"
+                sh "cd ${SANTFELIU_ETL}; ruby operations/gobierto_budgets/check-json-columns/run.rb ${STORAGE_DIR}/budgets-executed-income-2021.json"
             }
         }
         stage('Transform > Transform planned budgets data files') {
@@ -85,6 +91,8 @@ pipeline {
                 sh "cd ${SANTFELIU_ETL}; ruby operations/gobierto_budgets/transform-executed/run.rb ${STORAGE_DIR}/budgets-executed-income-2019.json  ${STORAGE_DIR}/budgets-executed-income-2019-transformed.json 2019 I"
                 sh "cd ${SANTFELIU_ETL}; ruby operations/gobierto_budgets/transform-executed/run.rb ${STORAGE_DIR}/budgets-executed-expense-2020.json ${STORAGE_DIR}/budgets-executed-expense-2020-transformed.json 2020 G"
                 sh "cd ${SANTFELIU_ETL}; ruby operations/gobierto_budgets/transform-executed/run.rb ${STORAGE_DIR}/budgets-executed-income-2020.json  ${STORAGE_DIR}/budgets-executed-income-2020-transformed.json 2020 I"
+                sh "cd ${SANTFELIU_ETL}; ruby operations/gobierto_budgets/transform-executed/run.rb ${STORAGE_DIR}/budgets-executed-expense-2021.json ${STORAGE_DIR}/budgets-executed-expense-2020-transformed.json 2021 G"
+                sh "cd ${SANTFELIU_ETL}; ruby operations/gobierto_budgets/transform-executed/run.rb ${STORAGE_DIR}/budgets-executed-income-2021.json  ${STORAGE_DIR}/budgets-executed-income-2020-transformed.json 2021 I"
             }
         }
         stage('Load > Import planned budgets') {
@@ -106,6 +114,8 @@ pipeline {
                 sh "cd ${SANTFELIU_ETL}; ruby operations/gobierto_budgets/import-executed-budgets/run.rb ${STORAGE_DIR}/budgets-executed-income-2019-transformed.json 2019"
                 sh "cd ${SANTFELIU_ETL}; ruby operations/gobierto_budgets/import-executed-budgets/run.rb ${STORAGE_DIR}/budgets-executed-expense-2020-transformed.json 2020"
                 sh "cd ${SANTFELIU_ETL}; ruby operations/gobierto_budgets/import-executed-budgets/run.rb ${STORAGE_DIR}/budgets-executed-income-2020-transformed.json 2020"
+                sh "cd ${SANTFELIU_ETL}; ruby operations/gobierto_budgets/import-executed-budgets/run.rb ${STORAGE_DIR}/budgets-executed-expense-2021-transformed.json 2021"
+                sh "cd ${SANTFELIU_ETL}; ruby operations/gobierto_budgets/import-executed-budgets/run.rb ${STORAGE_DIR}/budgets-executed-income-2021-transformed.json 2021"
             }
         }
         stage('Load > Calculate totals') {
