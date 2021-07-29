@@ -8,6 +8,9 @@ pipeline {
         // GOBIERTO = "/var/www/gobierto/current"
         // SANTFELIU_DOMAIN = "pressupost.santfeliu.cat"
     }
+    options {
+        retry(3)
+    }
     stages {
         stage('Load > Import GCI') {
             steps {
