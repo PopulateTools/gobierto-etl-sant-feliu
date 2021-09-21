@@ -10,6 +10,9 @@ pipeline {
         // GOBIERTO = "/var/www/gobierto/current"
         // SANT_FELIU_API_TOKEN
     }
+    options {
+        retry(3)
+    }
     stages {
         stage('Extract > Download data sources') {
             steps {
