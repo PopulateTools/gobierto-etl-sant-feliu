@@ -12,7 +12,7 @@ cp .env.example .env && ln -s .env .rbenv-vars
 
 And fill in the values
 
-This repository relies heavily in [gobierto_data](https://github.com/PopulateTools/gobierto_data)
+This repository relies heavily in [gobierto_budgets_data](https://github.com/PopulateTools/gobierto_budgets_data)
 
 ## Available operations
 
