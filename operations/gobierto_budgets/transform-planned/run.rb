@@ -33,7 +33,7 @@ puts "[START] transform-planned/run.rb with file=#{input_file} output=#{output_f
 json_data = JSON.parse(File.read(input_file))
 
 place = INE::Places::Place.find_by_slug('sant-feliu-de-llobregat')
-population = GobiertoData::GobiertoBudgets::Population.get(place.id, year)
+population = GobiertoBudgetsData::GobiertoBudgets::Population.get(place.id, year)
 
 base_data = {
   organization_id: place.id,
@@ -103,9 +103,9 @@ end
 
 income_data, expenses_functional_data, expenses_economic_data = normalize_data(json_data)
 
-output_data = hydratate(data: income_data, area_name: GobiertoData::GobiertoBudgets::ECONOMIC_AREA_NAME, kind: GobiertoData::GobiertoBudgets::INCOME, base_data: base_data) +
-                hydratate(data: expenses_functional_data, area_name: GobiertoData::GobiertoBudgets::FUNCTIONAL_AREA_NAME, kind: GobiertoData::GobiertoBudgets::EXPENSE, base_data: base_data) +
-                hydratate(data: expenses_economic_data, area_name: GobiertoData::GobiertoBudgets::ECONOMIC_AREA_NAME, kind: GobiertoData::GobiertoBudgets::EXPENSE, base_data: base_data)
+output_data = hydratate(data: income_data, area_name: GobiertoBudgetsData::GobiertoBudgets::ECONOMIC_AREA_NAME, kind: GobiertoBudgetsData::GobiertoBudgets::INCOME, base_data: base_data) +
+                hydratate(data: expenses_functional_data, area_name: GobiertoBudgetsData::GobiertoBudgets::FUNCTIONAL_AREA_NAME, kind: GobiertoBudgetsData::GobiertoBudgets::EXPENSE, base_data: base_data) +
+                hydratate(data: expenses_economic_data, area_name: GobiertoBudgetsData::GobiertoBudgets::ECONOMIC_AREA_NAME, kind: GobiertoBudgetsData::GobiertoBudgets::EXPENSE, base_data: base_data)
 
 File.write(output_file, output_data.to_json)
 

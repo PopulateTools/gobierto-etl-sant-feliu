@@ -35,7 +35,7 @@ puts "[START] transform-executed/run.rb with file=#{input_file} output=#{output_
 json_data = JSON.parse(File.read(input_file))
 
 place = INE::Places::Place.find_by_slug('sant-feliu-de-llobregat')
-population = GobiertoData::GobiertoBudgets::Population.get(place.id, year)
+population = GobiertoBudgetsData::GobiertoBudgets::Population.get(place.id, year)
 
 base_data = {
   organization_id: place.id,
@@ -55,7 +55,7 @@ def normalize_data(data, kind)
 
     amount = row["imp"].to_f
 
-    if kind == GobiertoData::GobiertoBudgets::EXPENSE
+    if kind == GobiertoBudgetsData::GobiertoBudgets::EXPENSE
       if row["prog"]
         # Level 3
         code = row["prog"][0..2]
@@ -72,7 +72,7 @@ def normalize_data(data, kind)
         normalized_data[code] ||= 0
         normalized_data[code] += amount
       end
-    elsif kind == GobiertoData::GobiertoBudgets::INCOME
+    elsif kind == GobiertoBudgetsData::GobiertoBudgets::INCOME
       # For income data, there's no children information, just first level
       code = row["cap"]
       normalized_data[code] ||= 0
@@ -91,7 +91,7 @@ def normalize_data_economic_expenses(data, kind)
 
     amount = row["imp"].to_f
 
-    if kind == GobiertoData::GobiertoBudgets::EXPENSE
+    if kind == GobiertoBudgetsData::GobiertoBudgets::EXPENSE
       code = row["cap"]
       normalized_data[code] ||= 0
       normalized_data[code] += amount
@@ -119,12 +119,12 @@ def hydratate(options)
 end
 
 normalized_data = normalize_data(json_data, kind)
-if(kind == GobiertoData::GobiertoBudgets::INCOME)
-  output_data = hydratate(data: normalized_data, area_name: GobiertoData::GobiertoBudgets::ECONOMIC_AREA_NAME, kind: kind, base_data: base_data)
+if(kind == GobiertoBudgetsData::GobiertoBudgets::INCOME)
+  output_data = hydratate(data: normalized_data, area_name: GobiertoBudgetsData::GobiertoBudgets::ECONOMIC_AREA_NAME, kind: kind, base_data: base_data)
 else
-  output_data = hydratate(data: normalized_data, area_name: GobiertoData::GobiertoBudgets::FUNCTIONAL_AREA_NAME, kind: kind, base_data: base_data)
+  output_data = hydratate(data: normalized_data, area_name: GobiertoBudgetsData::GobiertoBudgets::FUNCTIONAL_AREA_NAME, kind: kind, base_data: base_data)
   normalized_data = normalize_data_economic_expenses(json_data, kind)
-  output_data += hydratate(data: normalized_data, area_name: GobiertoData::GobiertoBudgets::ECONOMIC_AREA_NAME, kind: kind, base_data: base_data)
+  output_data += hydratate(data: normalized_data, area_name: GobiertoBudgetsData::GobiertoBudgets::ECONOMIC_AREA_NAME, kind: kind, base_data: base_data)
 end
 
 File.write(output_file, output_data.to_json)
