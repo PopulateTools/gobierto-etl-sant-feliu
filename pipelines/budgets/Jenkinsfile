@@ -6,6 +6,7 @@ pipeline {
         GOBIERTO_ETL_UTILS = "/var/www/gobierto-etl-utils/current"
         SANTFELIU_ETL = "/var/www/gobierto-etl-sant-feliu/current"
         STORAGE_DIR = "/tmp/sant-feliu"
+        SANT_FELIU_INE_CODE = "8211"
         // Variables that must be defined via Jenkins UI:
         // GOBIERTO = "/var/www/gobierto/current"
         // SANT_FELIU_API_TOKEN
@@ -68,7 +69,7 @@ pipeline {
         }
         stage('Load > Calculate totals') {
             steps {
-              sh "echo '8211' > ${STORAGE_DIR}/organization.id.txt"
+              sh "echo '${SANT_FELIU_INE_CODE}' > ${STORAGE_DIR}/organization.id.txt"
               sh "cd ${GOBIERTO_ETL_UTILS}; ruby operations/gobierto_budgets/update_total_budget/run.rb '2021 2022' ${STORAGE_DIR}/organization.id.txt"
             }
         }
@@ -89,7 +90,7 @@ pipeline {
         }
         stage('Load > Reset cache') {
             steps {
-              sh "cd ${GOBIERTO}; bin/rails runner ${GOBIERTO_ETL_UTILS}/operations/gobierto/clear-cache/run.rb"
+              sh "cd ${GOBIERTO}; bin/rails runner ${GOBIERTO_ETL_UTILS}/operations/gobierto/clear-cache/run.rb --site-organization-id '${SANT_FELIU_INE_CODE}' --namespace 'GobiertoBudgets'"
             }
         }
     }

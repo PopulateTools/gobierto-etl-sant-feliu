@@ -3,6 +3,7 @@
 GOBIERTO_ETL_UTILS=$DEV_DIR/gobierto-etl-utils
 ETL_SANT_FELIU=$DEV_DIR/gobierto-etl-sant-feliu
 STORAGE_DIR=/tmp/sant-feliu
+SANT_FELIU_INE_CODE=8211
 
 # Extract > Download data sources
 cd $GOBIERTO_ETL_UTILS; ruby operations/download/run.rb "https://www.santfeliu.cat/scripts/previsio_pressupost?execute&any=21&key=$SANT_FELIU_API_TOKEN" $STORAGE_DIR/budgets-planned-2021.json --compatible
@@ -40,7 +41,7 @@ cd $ETL_SANT_FELIU; ruby operations/gobierto_budgets/import-executed-budgets/run
 cd $ETL_SANT_FELIU; ruby operations/gobierto_budgets/import-executed-budgets/run.rb $STORAGE_DIR/budgets-executed-income-2021-transformed.json 2021
 
 # Load > Calculate totals
-echo "8211" > $STORAGE_DIR/organization.id.txt
+echo "$SANT_FELIU_INE_CODE" > $STORAGE_DIR/organization.id.txt
 cd $GOBIERTO_ETL_UTILS; ruby operations/gobierto_budgets/update_total_budget/run.rb "2022 2021" $STORAGE_DIR/organization.id.txt
 
 # Load > Calculate bubbles
@@ -53,4 +54,4 @@ cd $DEV_DIR/gobierto; bin/rails runner $GOBIERTO_ETL_UTILS/operations/gobierto_b
 cd $DEV_DIR/gobierto; bin/rails runner $GOBIERTO_ETL_UTILS/operations/gobierto/publish-activity/run.rb budgets_updated $STORAGE_DIR/organization.id.txt
 
 # Clear cache
-cd $DEV_DIR/gobierto; bin/rails runner $GOBIERTO_ETL_UTILS/operations/gobierto/clear-cache/run.rb
+cd $DEV_DIR/gobierto; bin/rails runner $GOBIERTO_ETL_UTILS/operations/gobierto/clear-cache/run.rb --site-organization-id "$SANT_FELIU_INE_CODE" --namespace "GobiertoBudgets"
