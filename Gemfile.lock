@@ -98,7 +98,7 @@ GEM
       concurrent-ruby (~> 1.0)
     ine-places (0.3.0)
       activesupport (>= 4.2)
-    jmespath (1.4.0)
+    jmespath (1.6.1)
     loofah (2.16.0)
       crass (~> 1.0.2)
       nokogiri (>= 1.5.9)
