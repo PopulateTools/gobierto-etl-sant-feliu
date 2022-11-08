@@ -6,7 +6,7 @@ pipeline {
         GOBIERTO_ETL_UTILS = "/var/www/gobierto-etl-utils/current"
         SANTFELIU_ETL = "/var/www/gobierto-etl-sant-feliu/current"
         STORAGE_DIR = "/tmp/sant-feliu"
-        SANT_FELIU_INE_CODE = "8221"
+        SANT_FELIU_INE_CODE = "8211"
         // Variables that must be defined via Jenkins UI:
         // GOBIERTO = "/var/www/gobierto/current"
         // SANT_FELIU_API_TOKEN
