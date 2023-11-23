@@ -15,6 +15,12 @@ pipeline {
         retry(3)
     }
     stages {
+        stage('Clean working dir') {
+          steps {
+              sh "rm -rf ${STORAGE_DIR}"
+              sh "mkdir -p ${STORAGE_DIR}"
+          }
+        }
         stage('Extract > Download data sources') {
             steps {
               sh '''#!/bin/bash
