@@ -143,8 +143,8 @@ GEM
       loofah (~> 2.21)
       nokogiri (~> 1.14)
     rake (13.2.1)
-    rexml (3.2.8)
-      strscan (>= 3.0.9)
+    rexml (3.3.3)
+      strscan
     savon (2.15.0)
       akami (~> 1.2)
       builder (>= 2.1.2)
