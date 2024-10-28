@@ -143,8 +143,7 @@ GEM
       loofah (~> 2.21)
       nokogiri (~> 1.14)
     rake (13.2.1)
-    rexml (3.3.6)
-      strscan
+    rexml (3.3.9)
     savon (2.15.0)
       akami (~> 1.2)
       builder (>= 2.1.2)
@@ -154,7 +153,6 @@ GEM
       nokogiri (>= 1.8.1)
       nori (~> 2.4)
       wasabi (>= 3.7, < 6)
-    strscan (3.1.0)
     timeout (0.4.1)
     tzinfo (2.0.6)
       concurrent-ruby (~> 1.0)
