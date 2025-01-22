@@ -26,8 +26,8 @@ pipeline {
               sh '''#!/bin/bash
                 source ${SANTFELIU_ETL}/.rbenv-vars;
                 cd ${GOBIERTO_ETL_UTILS};
-                ruby operations/download/run.rb 'https://www.santfeliu.cat/scripts/pressupost_despesa?execute&any=24'  ${STORAGE_DIR}/budgets-executed-expense-2024.json --compatible;
-                ruby operations/download/run.rb 'https://www.santfeliu.cat/scripts/pressupost_ingres?execute&any=24'   ${STORAGE_DIR}/budgets-executed-income-2024.json --compatible;
+                ruby operations/download/run.rb 'https://www.santfeliu.cat/scripts/pressupost_despesa?execute&any=25'  ${STORAGE_DIR}/budgets-executed-expense-2025.json --compatible;
+                ruby operations/download/run.rb 'https://www.santfeliu.cat/scripts/pressupost_ingres?execute&any=25'   ${STORAGE_DIR}/budgets-executed-income-2025.json --compatible;
                 ruby operations/download/run.rb 'https://www.santfeliu.cat/scripts/previsio_pressupost?execute&any=25&key='$SANT_FELIU_API_TOKEN ${STORAGE_DIR}/budgets-planned-2025.json --compatible;
                 sleep 30;
               '''
@@ -35,15 +35,15 @@ pipeline {
         }
         stage('Extract > Check valid JSON') {
             steps {
-                sh "cd ${GOBIERTO_ETL_UTILS}; ruby operations/check-json/run.rb ${STORAGE_DIR}/budgets-executed-expense-2024.json"
-                sh "cd ${GOBIERTO_ETL_UTILS}; ruby operations/check-json/run.rb ${STORAGE_DIR}/budgets-executed-income-2024.json"
+                sh "cd ${GOBIERTO_ETL_UTILS}; ruby operations/check-json/run.rb ${STORAGE_DIR}/budgets-executed-expense-2025.json"
+                sh "cd ${GOBIERTO_ETL_UTILS}; ruby operations/check-json/run.rb ${STORAGE_DIR}/budgets-executed-income-2025.json"
                 sh "cd ${GOBIERTO_ETL_UTILS}; ruby operations/check-json/run.rb ${STORAGE_DIR}/budgets-planned-2025.json"
             }
         }
         stage('Extract > Check data source columns') {
             steps {
-                sh "cd ${SANTFELIU_ETL}; ruby operations/gobierto_budgets/check-json-columns/run.rb ${STORAGE_DIR}/budgets-executed-expense-2024.json"
-                sh "cd ${SANTFELIU_ETL}; ruby operations/gobierto_budgets/check-json-columns/run.rb ${STORAGE_DIR}/budgets-executed-income-2024.json"
+                sh "cd ${SANTFELIU_ETL}; ruby operations/gobierto_budgets/check-json-columns/run.rb ${STORAGE_DIR}/budgets-executed-expense-2025.json"
+                sh "cd ${SANTFELIU_ETL}; ruby operations/gobierto_budgets/check-json-columns/run.rb ${STORAGE_DIR}/budgets-executed-income-2025.json"
                 sh "cd ${SANTFELIU_ETL}; ruby operations/gobierto_budgets/check-json-columns/run.rb ${STORAGE_DIR}/budgets-planned-2025.json"
             }
         }
@@ -54,8 +54,8 @@ pipeline {
         }
         stage('Transform > Transform executed budgets data files') {
             steps {
-                sh "cd ${SANTFELIU_ETL}; ruby operations/gobierto_budgets/transform-executed/run.rb ${STORAGE_DIR}/budgets-executed-expense-2024.json ${STORAGE_DIR}/budgets-executed-expense-2024-transformed.json 2024 G"
-                sh "cd ${SANTFELIU_ETL}; ruby operations/gobierto_budgets/transform-executed/run.rb ${STORAGE_DIR}/budgets-executed-income-2024.json  ${STORAGE_DIR}/budgets-executed-income-2024-transformed.json 2024 I"
+                sh "cd ${SANTFELIU_ETL}; ruby operations/gobierto_budgets/transform-executed/run.rb ${STORAGE_DIR}/budgets-executed-expense-2025.json ${STORAGE_DIR}/budgets-executed-expense-2025-transformed.json 2025 G"
+                sh "cd ${SANTFELIU_ETL}; ruby operations/gobierto_budgets/transform-executed/run.rb ${STORAGE_DIR}/budgets-executed-income-2025.json  ${STORAGE_DIR}/budgets-executed-income-2025-transformed.json 2025 I"
             }
         }
         stage('Load > Import planned budgets') {
@@ -65,14 +65,14 @@ pipeline {
         }
         stage('Load > Import executed budgets') {
             steps {
-                sh "cd ${SANTFELIU_ETL}; ruby operations/gobierto_budgets/import-executed-budgets/run.rb ${STORAGE_DIR}/budgets-executed-expense-2024-transformed.json 2024"
-                sh "cd ${SANTFELIU_ETL}; ruby operations/gobierto_budgets/import-executed-budgets/run.rb ${STORAGE_DIR}/budgets-executed-income-2024-transformed.json 2024"
+                sh "cd ${SANTFELIU_ETL}; ruby operations/gobierto_budgets/import-executed-budgets/run.rb ${STORAGE_DIR}/budgets-executed-expense-2025-transformed.json 2025"
+                sh "cd ${SANTFELIU_ETL}; ruby operations/gobierto_budgets/import-executed-budgets/run.rb ${STORAGE_DIR}/budgets-executed-income-2025-transformed.json 2025"
             }
         }
         stage('Load > Calculate totals') {
             steps {
               sh "echo '${SANT_FELIU_INE_CODE}' > ${STORAGE_DIR}/organization.id.txt"
-              sh "cd ${GOBIERTO_ETL_UTILS}; ruby operations/gobierto_budgets/update_total_budget/run.rb '2024 2025' ${STORAGE_DIR}/organization.id.txt"
+              sh "cd ${GOBIERTO_ETL_UTILS}; ruby operations/gobierto_budgets/update_total_budget/run.rb '2025' ${STORAGE_DIR}/organization.id.txt"
             }
         }
         stage('Load > Calculate bubbles') {
@@ -82,7 +82,7 @@ pipeline {
         }
         stage('Load > Calculate annual data') {
             steps {
-              sh "cd ${GOBIERTO}; bin/rails runner ${GOBIERTO_ETL_UTILS}/operations/gobierto_budgets/annual_data/run.rb '2024 2025' ${STORAGE_DIR}/organization.id.txt"
+              sh "cd ${GOBIERTO}; bin/rails runner ${GOBIERTO_ETL_UTILS}/operations/gobierto_budgets/annual_data/run.rb '2025' ${STORAGE_DIR}/organization.id.txt"
             }
         }
         stage('Load > Publish activity') {
