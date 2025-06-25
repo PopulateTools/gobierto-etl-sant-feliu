@@ -1,6 +1,6 @@
 email = "popu-servers+jenkins@populate.tools "
 pipeline {
-    agent any
+    agent { label 'gobierto-transparencia' }
     environment {
         PATH = "$HOME/.rbenv/shims:$PATH"
         SANTFELIU_ETL = "/var/www/gobierto-etl-sant-feliu/current/"
