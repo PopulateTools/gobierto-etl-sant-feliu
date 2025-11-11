@@ -1,22 +1,22 @@
 GIT
   remote: https://github.com/PopulateTools/gobierto_budgets_data.git
-  revision: 949acfabc01c64850aa027c0e0dc08b276179ff5
+  revision: 58ba858fb25c7fd8e008edb2fe08cd9537312c26
   specs:
     gobierto_budgets_data (0.1.0)
       actionpack
       activesupport
       aws-sdk-s3
       elasticsearch (~> 7.17.10)
-      ine-places (~> 0.3.0)
+      ine-places (~> 0.7.0)
       oj (~> 3.6)
       rake (~> 13.0)
 
 GEM
   remote: https://rubygems.org/
   specs:
-    actionpack (8.0.2)
-      actionview (= 8.0.2)
-      activesupport (= 8.0.2)
+    actionpack (8.1.1)
+      actionview (= 8.1.1)
+      activesupport (= 8.1.1)
       nokogiri (>= 1.8.5)
       rack (>= 2.2.4)
       rack-session (>= 1.0.1)
@@ -24,20 +24,20 @@ GEM
       rails-dom-testing (~> 2.2)
       rails-html-sanitizer (~> 1.6)
       useragent (~> 0.16)
-    actionview (8.0.2)
-      activesupport (= 8.0.2)
+    actionview (8.1.1)
+      activesupport (= 8.1.1)
       builder (~> 3.1)
       erubi (~> 1.11)
       rails-dom-testing (~> 2.2)
       rails-html-sanitizer (~> 1.6)
-    activesupport (8.0.2)
+    activesupport (8.1.1)
       base64
-      benchmark (>= 0.3)
       bigdecimal
       concurrent-ruby (~> 1.0, >= 1.3.1)
       connection_pool (>= 2.2.5)
       drb
       i18n (>= 1.6, < 2)
+      json
       logger (>= 1.4.2)
       minitest (>= 5.1)
       securerandom (>= 0.3)
@@ -50,32 +50,32 @@ GEM
       gyoku (>= 0.4.0)
       nokogiri
     aws-eventstream (1.4.0)
-    aws-partitions (1.1116.0)
-    aws-sdk-core (3.225.2)
+    aws-partitions (1.1181.0)
+    aws-sdk-core (3.237.0)
       aws-eventstream (~> 1, >= 1.3.0)
       aws-partitions (~> 1, >= 1.992.0)
       aws-sigv4 (~> 1.9)
       base64
+      bigdecimal
       jmespath (~> 1, >= 1.6.1)
       logger
-    aws-sdk-kms (1.105.0)
-      aws-sdk-core (~> 3, >= 3.225.0)
+    aws-sdk-kms (1.117.0)
+      aws-sdk-core (~> 3, >= 3.234.0)
       aws-sigv4 (~> 1.5)
-    aws-sdk-s3 (1.189.1)
-      aws-sdk-core (~> 3, >= 3.225.0)
+    aws-sdk-s3 (1.203.1)
+      aws-sdk-core (~> 3, >= 3.234.0)
       aws-sdk-kms (~> 1)
       aws-sigv4 (~> 1.5)
     aws-sigv4 (1.12.1)
       aws-eventstream (~> 1, >= 1.0.2)
     base64 (0.3.0)
-    benchmark (0.4.1)
-    bigdecimal (3.2.2)
+    bigdecimal (3.3.1)
     builder (3.3.0)
     concurrent-ruby (1.3.5)
-    connection_pool (2.5.3)
+    connection_pool (2.5.4)
     crass (1.0.6)
     csv (3.3.5)
-    date (3.4.1)
+    date (3.5.0)
     drb (2.2.3)
     elasticsearch (7.17.11)
       elasticsearch-api (= 7.17.11)
@@ -87,12 +87,12 @@ GEM
       faraday (>= 1, < 3)
       multi_json
     erubi (1.13.1)
-    faraday (2.13.1)
+    faraday (2.14.0)
       faraday-net_http (>= 2.0, < 3.5)
       json
       logger
-    faraday-net_http (3.4.1)
-      net-http (>= 0.5.0)
+    faraday-net_http (3.4.2)
+      net-http (~> 0.5)
     gyoku (1.4.0)
       builder (>= 2.1.2)
       rexml (~> 3.0)
@@ -103,27 +103,30 @@ GEM
       rack (>= 2.0, < 4)
     i18n (1.14.7)
       concurrent-ruby (~> 1.0)
-    ine-places (0.3.0)
+    ine-places (0.7.0)
       activesupport (>= 4.2)
+      csv (>= 3.3)
+      zeitwerk (>= 2.1.2)
     jmespath (1.6.2)
-    json (2.12.2)
+    json (2.16.0)
     logger (1.7.0)
     loofah (2.24.1)
       crass (~> 1.0.2)
       nokogiri (>= 1.12.0)
-    mail (2.8.1)
+    mail (2.9.0)
+      logger
       mini_mime (>= 0.1.1)
       net-imap
       net-pop
       net-smtp
     mini_mime (1.1.5)
     mini_portile2 (2.8.9)
-    minitest (5.25.5)
-    multi_json (1.15.0)
+    minitest (5.26.1)
+    multi_json (1.17.0)
     mutex_m (0.3.0)
-    net-http (0.6.0)
+    net-http (0.7.0)
       uri
-    net-imap (0.5.8)
+    net-imap (0.5.12)
       date
       net-protocol
     net-pop (0.1.2)
@@ -133,18 +136,18 @@ GEM
     net-smtp (0.5.1)
       net-protocol
     nkf (0.2.0)
-    nokogiri (1.18.9)
+    nokogiri (1.18.10)
       mini_portile2 (~> 2.8.2)
       racc (~> 1.4)
     nori (2.7.1)
       bigdecimal
-    oj (3.16.11)
+    oj (3.16.12)
       bigdecimal (>= 3.0)
       ostruct (>= 0.2)
-    ostruct (0.6.1)
+    ostruct (0.6.3)
     public_suffix (6.0.2)
     racc (1.8.1)
-    rack (3.1.18)
+    rack (3.2.4)
     rack-session (2.1.1)
       base64 (>= 0.1.0)
       rack (>= 3.0.0)
@@ -157,8 +160,8 @@ GEM
     rails-html-sanitizer (1.6.2)
       loofah (~> 2.21)
       nokogiri (>= 1.15.7, != 1.16.7, != 1.16.6, != 1.16.5, != 1.16.4, != 1.16.3, != 1.16.2, != 1.16.1, != 1.16.0.rc1, != 1.16.0)
-    rake (13.3.0)
-    rexml (3.4.2)
+    rake (13.3.1)
+    rexml (3.4.4)
     savon (2.15.1)
       akami (~> 1.2)
       builder (>= 2.1.2)
@@ -169,15 +172,16 @@ GEM
       nori (~> 2.4)
       wasabi (>= 3.7, < 6)
     securerandom (0.4.1)
-    timeout (0.4.3)
+    timeout (0.4.4)
     tzinfo (2.0.6)
       concurrent-ruby (~> 1.0)
-    uri (1.0.3)
+    uri (1.1.1)
     useragent (0.16.11)
     wasabi (5.1.0)
       addressable
       faraday (>= 1.9, < 3)
       nokogiri (>= 1.13.9)
+    zeitwerk (2.7.3)
 
 PLATFORMS
   ruby
