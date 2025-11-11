@@ -28,7 +28,7 @@ pipeline {
                 cd ${GOBIERTO_ETL_UTILS};
                 ruby operations/download/run.rb 'https://www.santfeliu.cat/scripts/pressupost_despesa?execute&any=25'  ${STORAGE_DIR}/budgets-executed-expense-2025.json --compatible;
                 ruby operations/download/run.rb 'https://www.santfeliu.cat/scripts/pressupost_ingres?execute&any=25'   ${STORAGE_DIR}/budgets-executed-income-2025.json --compatible;
-                ruby operations/download/run.rb 'https://www.santfeliu.cat/scripts/previsio_pressupost?execute&any=26&key='$SANT_FELIU_API_TOKEN ${STORAGE_DIR}/budgets-planned-2025.json --compatible;
+                ruby operations/download/run.rb 'https://www.santfeliu.cat/scripts/previsio_pressupost?execute&any=26&key='$SANT_FELIU_API_TOKEN ${STORAGE_DIR}/budgets-planned-2026.json --compatible;
                 sleep 30;
               '''
             }
