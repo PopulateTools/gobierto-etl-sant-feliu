@@ -108,7 +108,7 @@ GEM
       csv (>= 3.3)
       zeitwerk (>= 2.1.2)
     jmespath (1.6.2)
-    json (2.18.1)
+    json (2.19.2)
     logger (1.7.0)
     loofah (2.24.1)
       crass (~> 1.0.2)
