@@ -25,6 +25,7 @@ pipeline {
             steps {
               sh '''#!/bin/bash
                 source ${SANTFELIU_ETL}/.rbenv-vars;
+                export DOWNLOAD_PROXY_LIST_URL DOWNLOAD_PROXY_PORT;
                 cd ${GOBIERTO_ETL_UTILS};
                 ruby operations/download/run.rb 'https://www.santfeliu.cat/scripts/pressupost_despesa?execute&any=26'  ${STORAGE_DIR}/budgets-executed-expense-2026.json --compatible;
                 ruby operations/download/run.rb 'https://www.santfeliu.cat/scripts/pressupost_ingres?execute&any=26'   ${STORAGE_DIR}/budgets-executed-income-2026.json --compatible;
